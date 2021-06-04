@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "677228032609-fuhh9e15ouhk6po9b88ifm0j40dke72a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pt.ie.dogwalkingbuddy",
+            "certificate_hash": "b280c6f06e9ff0f4023e1e725c3e1cb045e57135"
+          }
+        },
+        {
           "client_id": "677228032609-g62fellg482jp3ajkum91ool4uivrokn.apps.googleusercontent.com",
           "client_type": 3
         }
