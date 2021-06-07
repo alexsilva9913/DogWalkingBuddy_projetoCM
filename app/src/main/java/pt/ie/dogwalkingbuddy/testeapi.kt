@@ -57,11 +57,11 @@ class testeapi : AppCompatActivity() {
                             "<b>Temperatura(Max):</b> " +
                             (weatherResponse.main!!.temp_max - 273).toString().substring(0,3) + " ºC" +
                             "<br>" +
-                            "<b>Humedad:</b> " +
+                            "<b>Humidade:</b> " +
                             weatherResponse.main!!.humidity +
                             "<br>" +
                             "<b>Tempo Agora:</b> " +
-                            weatherResponse.Weather!!.mainstate)
+                            weatherResponse.weatherList?.get(0)?.mainstate )
 
                     weatherData!!.text = stringBuilder
                 }
@@ -76,7 +76,7 @@ class testeapi : AppCompatActivity() {
 
     companion object {
 
-        var BaseUrl = "http://api.openweathermap.org/"
+        var BaseUrl = "https://api.openweathermap.org/"
         var AppId = "7aa419cff467343ef52cbf8b59063c08"
         var lat = "40.4167"
         var lon = "-3.7036"

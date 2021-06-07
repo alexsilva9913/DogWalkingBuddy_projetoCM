@@ -8,7 +8,8 @@ class WeatherResponse {
     var sys: Sys? = null
 
     @SerializedName("weather")
-    var Weather: Weather? = null
+    //var weather: Weather? = null
+    var weatherList: List<Weather>? = null
 
     @SerializedName("main")
     var main: Main? = null
