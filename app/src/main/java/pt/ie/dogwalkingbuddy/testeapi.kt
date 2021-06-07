@@ -95,14 +95,14 @@ class testeapi : AppCompatActivity() {
                     }
 
                     val builder = NotificationCompat.Builder(this@testeapi, channelId)
-                        .setSmallIcon(R.drawable.ic_launcher_background)
+                        .setSmallIcon(R.drawable.baseline_pets_24)
                         .setContentTitle("TEMPO AGORA")
                         .setContentText(" " + weatherResponse.weatherList?.get(0)?.mainstate)
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
                     with(NotificationManagerCompat.from(this@testeapi)) {
 
-                        if(weatherResponse.weatherList?.get(0)?.mainstate == "Rain"){
+                        if(weatherResponse.weatherList?.get(0)?.mainstate == "Clouds"){
                             notify(notificationId, builder.build())
                         }
                     }
