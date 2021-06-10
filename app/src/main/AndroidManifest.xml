@@ -13,12 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DogWalkingBuddy">
-
         <activity android:name=".TrailActivity" />
         <activity android:name=".testeapi" />
         <activity android:name=".MenuPrincipal"/>
         <activity android:name=".leaderboard_item"/>
         <activity android:name=".leaderboard" />
+        <activity android:name=".timeline" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
