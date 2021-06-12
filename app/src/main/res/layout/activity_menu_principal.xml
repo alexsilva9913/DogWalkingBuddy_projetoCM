@@ -50,6 +50,7 @@
                 android:layout_marginRight="140dp"
                 android:text="Trails"
                 android:drawableRight="@drawable/baseline_hiking_24"
+                android:textColor="@color/white"
                 app:backgroundTint="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -63,6 +64,7 @@
                 android:layout_marginRight="140dp"
                 android:drawableRight="@drawable/baseline_timeline_24"
                 android:text="Timeline"
+                android:textColor="@color/white"
                 app:backgroundTint="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -74,8 +76,9 @@
                 android:layout_marginStart="140dp"
                 android:layout_marginLeft="140dp"
                 android:layout_marginTop="217dp"
-                android:text="Leaderboard"
                 android:drawableLeft="@drawable/baseline_leaderboard_24"
+                android:text="Leaderboard"
+                android:textColor="@color/white"
                 app:backgroundTint="@color/secondary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -88,6 +91,7 @@
                 android:layout_marginLeft="144dp"
                 android:layout_marginTop="483dp"
                 android:text="Rewards"
+                android:textColor="@color/white"
                 android:drawableLeft="@drawable/baseline_emoji_events_24"
                 app:backgroundTint="@color/secondary"
                 app:layout_constraintStart_toStartOf="parent"
