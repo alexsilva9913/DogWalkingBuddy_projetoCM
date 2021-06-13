@@ -59,8 +59,8 @@ class MainActivity : AppCompatActivity() {
         val firebaseUser = firebaseAuth.currentUser
         if(firebaseUser != null) {
             // start profile acivity
-            startActivity(Intent(this@MainActivity, MainMenu::class.java))
-            finish()
+//            startActivity(Intent(this@MainActivity, MainMenu::class.java))
+  //          finish()
         }
     }
 
