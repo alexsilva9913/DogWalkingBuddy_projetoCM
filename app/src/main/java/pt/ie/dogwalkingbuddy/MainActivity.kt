@@ -12,6 +12,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import pt.ie.dogwalkingbuddy.databinding.ActivityMainBinding
 import java.lang.Exception
 
@@ -27,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         private const val RC_SIGN_IN = 100
         private const val  TAG = "GOOGLE_SIGN_IN_TAG"
     }
+    val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,10 +107,18 @@ class MainActivity : AppCompatActivity() {
                     //user is new
                     Log.d(TAG,"firebaseAuthWithGoogleAccount: Account created ...... \n ${email}")
                     Toast.makeText(this@MainActivity,"Account created ...... \n ${email}",Toast.LENGTH_SHORT).show()
+                    // Create a new user with a first and last name
+                    val user = hashMapOf(
+                        "pontos" to 0
+                    )
+
+                    db.collection("user").document(uid)
+                        .set(user, SetOptions.merge())
                 }else{
                     //existing user
                     Log.d(TAG,"firebaseAuthWithGoogleAccount: Existing User ...... \n ${email}")
                     Toast.makeText(this@MainActivity,"Welcome back ...... \n ${email}",Toast.LENGTH_SHORT).show()
+
                 }
                 // start profile acivity
                 startActivity(Intent(this@MainActivity,MainMenu::class.java))
