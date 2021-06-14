@@ -17,6 +17,8 @@
         <activity android:name=".TrailActivity" />
         <activity android:name=".testeapi" />
         <activity android:name=".MenuPrincipal"/>
+        <activity android:name=".leaderboard_item"/>
+        <activity android:name=".leaderboard" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
