@@ -71,8 +71,8 @@ class MenuPrincipal : AppCompatActivity() {
         }
         val reward = findViewById<Button>(R.id.buttonrewards)
         reward.setOnClickListener{
-           // val intent = Intent(this, /*Reward*/::class.java)
-           // startActivity(intent)
+           val intent = Intent(this, loja::class.java)
+           startActivity(intent)
         }
         val walk = findViewById<FloatingActionButton>(R.id.fabwalk)
         walk.setOnClickListener{

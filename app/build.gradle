@@ -69,8 +69,8 @@ dependencies {
     android.defaultConfig.vectorDrawables.useSupportLibrary = true
 
     //Notificações
+    implementation "com.android.support:support-compat:28.0.0"
     implementation 'androidx.core:core:1.0.0'
-
     //Retrofit
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
