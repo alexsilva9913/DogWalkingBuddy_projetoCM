@@ -34,8 +34,8 @@ class MenuPrincipal : AppCompatActivity() {
         }
         val walk = findViewById<FloatingActionButton>(R.id.fabwalk)
         walk.setOnClickListener{
-           // val intent = Intent(this, /*Walk*/::class.java)
-           // startActivity(intent)
+            val intent = Intent(this, TrailActivity::class.java)
+            startActivity(intent)
         }
 
     }

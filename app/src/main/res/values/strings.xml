@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">DogWalkingBuddy</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="start_dog_walk">Start</string>
+    <string name="tracking_walk_notification_label">Tracking your walk</string>
+    <string name="end_walk_btn_label">End Walk</string>
+    <string name="trail_walked_distance_label">Distance: %1$.2f Km</string>
+    <string name="trail_time_elapsed_label">00:00:00</string>
+    <string name="trail_points_earned_label">Points Earned:</string>
+    <string name="trail_points_earned_value_label">0</string>
+    <string name="end_walk_confirm_dialog">End tracking</string>
+    <string name="end_walk_confirm_dialog_desc">Are you sure you want to end the walk?</string>
+    <string name="confirm_label">Confirm</string>
+    <string name="cancel_label">Cancel</string>
     <string name="login">Username</string>
 </resources>
