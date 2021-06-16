@@ -14,8 +14,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.google.android.gms.maps.GoogleMap
 import pt.ie.dogwalkingbuddy.api.WeatherResponse
 import pt.ie.dogwalkingbuddy.api.WeatherService
+import pt.ie.dogwalkingbuddy.other.Constants
+import pt.ie.dogwalkingbuddy.other.TrackingUtility
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +26,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
+//####################################################
+//### NOT BEING USED!        JUST A TEST FILE!      ##
+//####################################################
 
 @Suppress("DEPRECATION")
 class testeapi : AppCompatActivity() {
@@ -36,16 +42,14 @@ class testeapi : AppCompatActivity() {
     private val description = "Test Notification"
     private val notificationId = 101
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    /*override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.testeapi)
 
         weatherData = findViewById(R.id.textView)
 
         findViewById<View>(R.id.button).setOnClickListener { getCurrentData() }
-
-    }
-
+    }*/
 
     private fun getCurrentData() {
 
