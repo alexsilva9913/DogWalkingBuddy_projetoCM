@@ -80,10 +80,6 @@ class TrailActivity : AppCompatActivity(),
         }
     }
 
-    private fun endWalk() {
-        sendCommandToTrackingService(ACTION_STOP_SERVICE)
-    }
-
     private fun subscribeToObservers() {
         TrackingService.isTracking.observe(this, Observer {
             isTracking = it

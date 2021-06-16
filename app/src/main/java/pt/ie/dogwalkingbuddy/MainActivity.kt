@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
 
     //constantes
-    private companion object{
+    private companion object {
         private const val RC_SIGN_IN = 100
         private const val  TAG = "GOOGLE_SIGN_IN_TAG"
     }

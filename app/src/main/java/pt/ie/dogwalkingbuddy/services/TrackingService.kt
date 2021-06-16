@@ -58,6 +58,7 @@ class TrackingService : LifecycleService() {
         val timeRunInMillis = MutableLiveData<Long>()
         val totalDistanceWalked = MutableLiveData<Double>()
         val totalPointsEarned = MutableLiveData<Long>()
+        val currentSpeed = MutableLiveData<Double>()
         var timeStarted = 0L
         var lapTime = 0L
     }
@@ -86,7 +87,9 @@ class TrackingService : LifecycleService() {
                         // Verifica se a ultima distancia é maior a 1.5 metros ou não-NaN
                         if (!lastDistance.isNaN() && lastDistance >= 1.5) {
                             totalDistanceWalked.postValue(totalDistanceWalked.value!! + lastDistance)
-                            totalPointsEarned.postValue(floor(totalDistanceWalked.value!!/100).toLong() * 10)
+                            if (currentSpeed.value!! < 18.0) {
+                                totalPointsEarned.postValue(floor(totalDistanceWalked.value!!/100).toLong() * 10)
+                            }
                         }
                     }
                     timeRunInSeconds.postValue(timeRunInSeconds.value!! + 1)
@@ -115,6 +118,7 @@ class TrackingService : LifecycleService() {
         timeRunInMillis.postValue(0L)
         totalDistanceWalked.postValue(0.0)
         totalPointsEarned.postValue(0)
+        currentSpeed.postValue(0.0)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -163,6 +167,10 @@ class TrackingService : LifecycleService() {
             if (isTracking.value!!) {
                 result?.locations?.let { locations ->
                     for (location in locations) {
+                        if (location.hasSpeed()) {
+                            // Multiply by 3.6 to get Km/H
+                            currentSpeed.postValue(location.speed.toDouble() * 3.6)
+                        }
                         addPathPoint(location)
                     }
                 }
