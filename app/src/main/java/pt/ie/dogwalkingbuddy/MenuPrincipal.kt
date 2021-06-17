@@ -7,6 +7,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -20,6 +22,8 @@ import androidx.core.app.NotificationManagerCompat
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import pt.ie.dogwalkingbuddy.api.WeatherResponse
 import pt.ie.dogwalkingbuddy.api.WeatherService
 import retrofit2.Call
@@ -96,8 +100,6 @@ class MenuPrincipal : AppCompatActivity() {
             }
         }
         createLocationRequest()
-
-        //getCurrentData(latNow, lonNow)
     }
 
     private fun getCurrentData(latNow: Double, lonNow: Double) {
@@ -111,6 +113,15 @@ class MenuPrincipal : AppCompatActivity() {
             .build()
         val service = retrofit.create(WeatherService::class.java)
         val call = service.getCurrentWeatherData(latNow.toString(), lonNow.toString(), AppId)
+
+        if (!isNetworkAvailable(this)) {
+            showtext.text = "Unavailable"
+            return
+        }
+
+        // spaghetti to enable offline trail saving (saves pending trails when this activity is called)
+        val db = Firebase.firestore
+        db.enableNetwork()
 
         call.enqueue(object : Callback<WeatherResponse> {
             override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
@@ -160,14 +171,9 @@ class MenuPrincipal : AppCompatActivity() {
     }
 
     companion object {
-
         var BaseUrl = "https://api.openweathermap.org/"
         var AppId = "7aa419cff467343ef52cbf8b59063c08"
-        //var lat = "40.4167"
-        //var lon = "-3.7036"
-
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
-
     }
 
     private fun createLocationRequest() {
@@ -203,5 +209,30 @@ class MenuPrincipal : AppCompatActivity() {
         Log.d("Valor:", "Resume")
     }
 
-
+    fun isNetworkAvailable(context: Context?): Boolean {
+        if (context == null) return false
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            if (capabilities != null) {
+                when {
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
+                        return true
+                    }
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
+                        return true
+                    }
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
+                        return true
+                    }
+                }
+            }
+        } else {
+            val activeNetworkInfo = connectivityManager.activeNetworkInfo
+            if (activeNetworkInfo != null && activeNetworkInfo.isConnected) {
+                return true
+            }
+        }
+        return false
+    }
 }

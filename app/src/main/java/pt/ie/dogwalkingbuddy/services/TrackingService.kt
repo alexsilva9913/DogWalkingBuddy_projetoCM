@@ -45,20 +45,18 @@ typealias Polylines = MutableList<Polyline>
 
 class TrackingService : LifecycleService() {
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    private val timeRunInSeconds = MutableLiveData<Long>()
-
-    private var isFirstRun = true
+    private var timeRunInSeconds = MutableLiveData<Long>()
     private var isTimerEnabled = false
     private var timeWalked = 0L
     private var lastSecondTimestamp = 0L
 
     companion object {
         val isTracking = MutableLiveData<Boolean>()
-        val pathPoints = MutableLiveData<Polylines>()
-        val timeRunInMillis = MutableLiveData<Long>()
-        val totalDistanceWalked = MutableLiveData<Double>()
-        val totalPointsEarned = MutableLiveData<Long>()
-        val currentSpeed = MutableLiveData<Double>()
+        var pathPoints = MutableLiveData<Polylines>()
+        var timeRunInMillis = MutableLiveData<Long>()
+        var totalDistanceWalked = MutableLiveData<Double>()
+        var totalPointsEarned = MutableLiveData<Long>()
+        var currentSpeed = MutableLiveData<Double>()
         var timeStarted = 0L
         var lapTime = 0L
     }
@@ -125,16 +123,11 @@ class TrackingService : LifecycleService() {
         intent?.let {
             when (it.action) {
                 ACTION_START_OR_RESUME_SERVICE -> {
-                    if (isFirstRun) {
-                        startForegroundService()
-                        isFirstRun = false
-                        Log.d(this.javaClass.name, "Started service")
-                    } else {
-                        Log.d(this.javaClass.name, "Resumed service")
-                    }
+                    startForegroundService()
+                    Log.d(this.javaClass.name, "Started service")
                 }
                 ACTION_STOP_SERVICE -> {
-                    isTracking.postValue(false)
+                    stopForegroundService()
                     Log.d(this.javaClass.name, "Stopped service")
                 }
                 else -> {
@@ -192,6 +185,24 @@ class TrackingService : LifecycleService() {
         add(mutableListOf())
         pathPoints.postValue(this)
     } ?: pathPoints.postValue(mutableListOf(mutableListOf()))
+
+    private fun stopForegroundService() {
+        isTracking.postValue(false)
+        pathPoints = MutableLiveData<Polylines>()
+        timeRunInMillis = MutableLiveData<Long>(0)
+        totalDistanceWalked = MutableLiveData<Double>(0.0)
+        totalPointsEarned = MutableLiveData<Long>(0)
+        currentSpeed = MutableLiveData<Double>(0.0)
+        timeRunInSeconds = MutableLiveData<Long>(0)
+        timeStarted = 0L
+        lapTime = 0L
+        isTimerEnabled = false
+        timeWalked = 0L
+        lastSecondTimestamp = 0L
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            stopForeground(STOP_FOREGROUND_REMOVE)
+        }
+    }
 
     private fun startForegroundService() {
         startTracking()
