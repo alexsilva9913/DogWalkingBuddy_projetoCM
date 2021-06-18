@@ -86,9 +86,9 @@ class MainActivity : AppCompatActivity() {
         if( isNetworkAvailable(this)==true) {
             val firebaseUser = firebaseAuth.currentUser
             if (firebaseUser != null) {
-                // start profile acivity
-                //startActivity(Intent(this@MainActivity, MenuPrincipal::class.java))
-            //    finish()
+                 // start profile acivity
+//                startActivity(Intent(this@MainActivity, MenuPrincipal::class.java))
+//                finish()
             }
         }
     }

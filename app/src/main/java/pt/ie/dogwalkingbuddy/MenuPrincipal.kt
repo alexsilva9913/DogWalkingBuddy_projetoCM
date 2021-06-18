@@ -106,6 +106,7 @@ class MenuPrincipal : AppCompatActivity() {
 
         //TextView
         val showtext = findViewById<TextView>(R.id.wethernow)
+        showtext.text = "Fetching..."
 
         val retrofit = Retrofit.Builder()
             .baseUrl(BaseUrl)

@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.item_timeline.view.*
 import pt.ie.dogwalkingbuddy.R
 import pt.ie.dogwalkingbuddy.Trails
 import pt.ie.dogwalkingbuddy.dataclass.Trilhos
+import pt.ie.dogwalkingbuddy.other.TrackingUtility
 import java.sql.Timestamp
 import java.util.*
 
@@ -44,20 +45,9 @@ class TimelineAdapter: RecyclerView.Adapter<TimelineAdapter.TimelineViewHolder>(
     inner class TimelineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(trilho: Trails, position: Int) {
-
-                val stamp = Timestamp(trilho.seconds_walked.toLong())
-                val date = Date(stamp.getTime())
-                itemView.text_timeline_title.text = "Walk Done! "
-
-                var input = trilho.seconds_walked
-
-                var hours = input / 3600;
-                var minutes = (input % 3600) / 60;
-                var seconds = (input % 3600) % 60;
-
-                itemView.text_timeline_date.text = "" + hours + ":" + minutes + ":" + seconds
-                itemView.text_timeline_pontos.text = trilho.points_earned.toString()
-
+            itemView.text_timeline_title.text = "Walk Done! "
+            itemView.text_timeline_date.text = TrackingUtility.getFormattedStopwatchTime(trilho.seconds_walked)
+            itemView.text_timeline_pontos.text = trilho.points_earned.toString()
         }
     }
 }

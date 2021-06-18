@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_leaderboard_item.view.*
 import pt.ie.dogwalkingbuddy.R
 
 class PlayerAdapter : RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder>() {
-
     private var players: MutableList<Player> = mutableListOf()
 
     override fun getItemCount(): Int = players.size
@@ -36,7 +36,9 @@ class PlayerAdapter : RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder>() {
             itemView.positionitem.text = (position + 1).toString()
             itemView.pontos.text = player.pontos.toString()
             itemView.name.text = player.name
-            itemView.photo.loadImg(player.photo)
+            Glide.with(itemView.context)
+                .load(player.photo)
+                .into(itemView.photo)
         }
     }
 }

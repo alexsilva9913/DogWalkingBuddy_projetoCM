@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.content_scrolling.*
 import pt.ie.dogwalkingbuddy.adapter.Player
 import pt.ie.dogwalkingbuddy.adapter.PlayerAdapter
-import pt.ie.dogwalkingbuddy.adapter.loadImg
 
 
 class leaderboard : AppCompatActivity() {
@@ -36,13 +36,13 @@ class leaderboard : AppCompatActivity() {
         val db = FirebaseFirestore.getInstance()
         db.collection("user")
             .orderBy("pontos", Query.Direction.DESCENDING)
-            .addSnapshotListener({ snapshots, error ->
+            .addSnapshotListener { snapshots, error ->
                 if (error != null) {
                     Log.d("TAG", error.message!!)
                     return@addSnapshotListener
                 }
 
-                val players = snapshots?.map{
+                val players = snapshots?.map {
                     it.toObject(Player::class.java)
                 }
                 val champions = players?.take(3)
@@ -54,7 +54,7 @@ class leaderboard : AppCompatActivity() {
                         }
                     }
                 }
-            })
+            }
     }
 
     private fun showPlayersPosition(players: List<Player>) {
@@ -62,11 +62,16 @@ class leaderboard : AppCompatActivity() {
         adapter.addPlayers(players)
     }
 
-
     private fun showChampions(championPlayers: List<Player>) {
-        iv_champion1.loadImg(championPlayers[0].photo)
-        iv_champion2.loadImg(championPlayers[1].photo)
-        iv_champion3.loadImg(championPlayers[2].photo)
+        Glide.with(applicationContext)
+            .load(championPlayers[0].photo)
+            .into(iv_champion1)
+        Glide.with(applicationContext)
+            .load(championPlayers[1].photo)
+            .into(iv_champion2)
+        Glide.with(applicationContext)
+            .load(championPlayers[2].photo)
+            .into(iv_champion3)
     }
 
 }
