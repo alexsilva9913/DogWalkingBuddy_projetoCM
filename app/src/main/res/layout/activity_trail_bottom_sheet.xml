@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/current_trail_info_pane"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:padding="16dp"
+    android:background="@color/white"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="180dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+    <Button
+        android:id="@+id/end_walk_btn"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="@string/end_walk_btn_label"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/trail_walked_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/trail_walked_distance_label"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/end_walk_btn" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/trail_time_elapsed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/end_walk_btn"
+        android:text="@string/trail_time_elapsed_label" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/trail_points_earned_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trail_walked_distance"
+        android:text="@string/trail_points_earned_label" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/trail_points_earned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/trail_points_earned_value_label"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trail_time_elapsed" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

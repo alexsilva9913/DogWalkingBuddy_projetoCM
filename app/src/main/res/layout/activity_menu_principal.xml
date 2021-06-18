@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".MenuPrincipal">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:backgroundTint="@color/primary"
+            app:menu="@menu/bottom_app_bar"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabwalk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:tint="@color/primary"
+            app:backgroundTint="@color/secondary"
+            app:layout_anchor="@id/bottomAppBar"
+            app:rippleColor="@color/white"
+            app:tint="@color/white"
+            app:srcCompat="@drawable/baseline_pets_24" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_anchor="@+id/constraintLayout"
+            app:layout_anchorGravity="center">
+
+            <Button
+                android:id="@+id/buttontrail"
+                android:layout_width="300dp"
+                android:layout_height="69dp"
+                android:layout_marginTop="84dp"
+                android:layout_marginEnd="140dp"
+                android:layout_marginRight="140dp"
+                android:drawableRight="@drawable/baseline_hiking_24"
+                android:text="Trails"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/buttontimeline"
+                android:layout_width="300dp"
+                android:layout_height="69dp"
+                android:layout_marginTop="350dp"
+                android:layout_marginEnd="140dp"
+                android:layout_marginRight="140dp"
+                android:drawableRight="@drawable/baseline_timeline_24"
+                android:text="Timeline"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/buttonleaderboard"
+                android:layout_width="278dp"
+                android:layout_height="68dp"
+                android:layout_marginStart="140dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="217dp"
+                android:drawableLeft="@drawable/baseline_leaderboard_24"
+                android:text="Leaderboard"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/secondary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/buttonrewards"
+                android:layout_width="278dp"
+                android:layout_height="68dp"
+                android:layout_marginStart="144dp"
+                android:layout_marginLeft="144dp"
+                android:layout_marginTop="483dp"
+                android:text="Rewards"
+                android:textColor="@color/white"
+                android:drawableLeft="@drawable/baseline_emoji_events_24"
+                app:backgroundTint="@color/secondary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/backgroundweather"
+                android:layout_width="173dp"
+                android:layout_height="34dp"
+                android:background="@drawable/weatherbackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/wethernow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/backgroundweather"
+                app:layout_constraintEnd_toEndOf="@+id/backgroundweather"
+                app:layout_constraintHorizontal_bias="0.517"
+                app:layout_constraintStart_toStartOf="@+id/backgroundweather"
+                app:layout_constraintTop_toTopOf="@+id/backgroundweather" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
