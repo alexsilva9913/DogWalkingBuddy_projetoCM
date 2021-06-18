@@ -14,4 +14,7 @@
     <color name="secondary">#FFDE00</color>
     <color name="secondaryvariant">#ffc500</color>
 
+    <color name="colorText">#FFF</color>
+    <color name="colorBtpn">#f58220</color>
+
 </resources>

@@ -56,8 +56,8 @@ class MenuPrincipal : AppCompatActivity() {
 
         val leaderboard = findViewById<Button>(R.id.buttonleaderboard)
         leaderboard.setOnClickListener{
-          //  val intent = Intent(this, /*LeaderBoard*/::class.java)
-          //  startActivity(intent)
+            val intent = Intent(this, pt.ie.dogwalkingbuddy.leaderboard::class.java)
+            startActivity(intent)
         }
         val trail = findViewById<Button>(R.id.buttontrail)
         trail.setOnClickListener{

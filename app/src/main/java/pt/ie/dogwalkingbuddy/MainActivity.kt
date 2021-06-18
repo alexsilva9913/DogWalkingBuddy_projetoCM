@@ -1,6 +1,10 @@
 package pt.ie.dogwalkingbuddy
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -60,11 +64,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkUser() {
-        val firebaseUser = firebaseAuth.currentUser
-        if(firebaseUser != null) {
-            // start profile acivity
-            startActivity(Intent(this@MainActivity, MenuPrincipal::class.java))
-            finish()
+        if( isNetworkAvailable(this)==true) {
+            val firebaseUser = firebaseAuth.currentUser
+            if (firebaseUser != null) {
+                // start profile acivity
+                startActivity(Intent(this@MainActivity, MenuPrincipal::class.java))
+                 finish()
+            }
         }
     }
 
@@ -109,7 +115,9 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity,"Account created ...... \n ${email}",Toast.LENGTH_SHORT).show()
                     // Create a new user with a first and last name
                     val user = hashMapOf(
-                        "pontos" to 0
+                        "pontos" to 0,
+                        "name" to "DefaultName",
+                        "photo" to "https://firebasestorage.googleapis.com/v0/b/commov-ed043.appspot.com/o/Screenshot_1.png?alt=media&token=8c7fc37f-74f9-4d9e-9f57-ae3685be9eac"
                     )
 
                     db.collection("user").document(uid)
@@ -118,7 +126,6 @@ class MainActivity : AppCompatActivity() {
                     //existing user
                     Log.d(TAG,"firebaseAuthWithGoogleAccount: Existing User ...... \n ${email}")
                     Toast.makeText(this@MainActivity,"Welcome back ...... \n ${email}",Toast.LENGTH_SHORT).show()
-
                 }
                 // start profile acivity
                 startActivity(Intent(this@MainActivity,MenuPrincipal::class.java))
@@ -130,5 +137,33 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG,"firebaseAuthWithGoogleAccount: Loggin failed due to ${e.message}")
                 Toast.makeText(this@MainActivity,"firebaseAuthWithGoogleAccount: Login failed due to ...... \n ${e.message}",Toast.LENGTH_SHORT).show()
             }
+    }
+
+
+    fun isNetworkAvailable(context: Context?): Boolean {
+        if (context == null) return false
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            if (capabilities != null) {
+                when {
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
+                        return true
+                    }
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
+                        return true
+                    }
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
+                        return true
+                    }
+                }
+            }
+        } else {
+            val activeNetworkInfo = connectivityManager.activeNetworkInfo
+            if (activeNetworkInfo != null && activeNetworkInfo.isConnected) {
+                return true
+            }
+        }
+        return false
     }
 }
