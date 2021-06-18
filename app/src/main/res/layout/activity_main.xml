@@ -43,6 +43,7 @@
         android:text="Login"
         android:layout_below="@id/Password"
         android:layout_centerInParent="true"
+        app:backgroundTint="@color/secondary"
         android:layout_marginLeft="30dp"
         />
 
