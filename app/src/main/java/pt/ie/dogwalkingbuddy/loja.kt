@@ -16,6 +16,8 @@ class loja : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loja)
 
+        try {this.supportActionBar!!.hide()} catch (e: NullPointerException) {}
+
         val auth = FirebaseAuth.getInstance()
         val UIDvalor = auth.uid
 

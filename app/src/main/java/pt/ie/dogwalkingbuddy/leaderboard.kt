@@ -17,6 +17,9 @@ class leaderboard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboard)
+
+        try {this.supportActionBar!!.hide()} catch (e: NullPointerException) {}
+
         setupRecyclerView()
         loadPlayers()
     }

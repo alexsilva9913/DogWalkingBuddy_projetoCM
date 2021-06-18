@@ -15,6 +15,9 @@ class timeline : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timeline)
+
+        try {this.supportActionBar!!.hide()} catch (e: NullPointerException) {}
+
         setupRecyclerView()
 
         loadPlayers()
@@ -35,7 +38,7 @@ class timeline : AppCompatActivity() {
         val UIDvalor = auth.uid
 
         val trailsusers = db.collection("trails")
-            .orderBy("time_started_unix", Query.Direction.ASCENDING)
+            //.orderBy("time_started_unix", Query.Direction.ASCENDING)
 
         trailsusers.whereEqualTo("user", UIDvalor.toString())
             .addSnapshotListener({ snapshots, error ->
@@ -46,7 +49,6 @@ class timeline : AppCompatActivity() {
                 val trilho = snapshots?.map{
                     it.toObject(Trails::class.java)
                 }
-                //val champions = trilho?.take(3)
                 if (trilho != null) {
                     showPlayersPosition(trilho)
                 }
