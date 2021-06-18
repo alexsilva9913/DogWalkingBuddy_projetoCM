@@ -61,8 +61,8 @@ class MenuPrincipal : AppCompatActivity() {
         }
         val trail = findViewById<Button>(R.id.buttontrail)
         trail.setOnClickListener{
-        //    val intent = Intent(this, /*Trail*/::class.java)
-          //  startActivity(intent)
+            val intent = Intent(this, TrailActivity::class.java)
+            startActivity(intent)
         }
         val timeline = findViewById<Button>(R.id.buttontimeline)
         timeline.setOnClickListener{

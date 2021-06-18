@@ -7,6 +7,7 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -19,6 +20,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_main.*
 import pt.ie.dogwalkingbuddy.databinding.ActivityMainBinding
 import java.lang.Exception
 
@@ -54,6 +56,23 @@ class MainActivity : AppCompatActivity() {
         checkUser()
 
 
+        val offlinemenu = findViewById<Button>(R.id.buttonOffline)
+
+
+
+
+
+
+
+
+
+
+
+        offlinemenu.setOnClickListener{
+            val intent = Intent(this, pt.ie.dogwalkingbuddy.Menu_Principal_Off::class.java)
+            startActivity(intent)
+        }
+
         //Google SignIn
         binding.buttonGoogle.setOnClickListener {
             //begin google signup
@@ -68,8 +87,8 @@ class MainActivity : AppCompatActivity() {
             val firebaseUser = firebaseAuth.currentUser
             if (firebaseUser != null) {
                 // start profile acivity
-                startActivity(Intent(this@MainActivity, MenuPrincipal::class.java))
-                 finish()
+                //startActivity(Intent(this@MainActivity, MenuPrincipal::class.java))
+            //    finish()
             }
         }
     }

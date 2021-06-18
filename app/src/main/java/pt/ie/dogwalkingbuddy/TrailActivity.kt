@@ -227,12 +227,18 @@ class TrailActivity : AppCompatActivity(),
                             if (user.data != null) {
                                 val curPoints = user.data!!["pontos"] as Long
                                 db.collection("user").document(firebaseAuth.uid!!)
-                                    .set(hashMapOf("pontos" to curPoints + pointsEarned))
+                                    .set(hashMapOf("pontos" to curPoints + pointsEarned,
+                                    "name" to user.data!!["name"],
+                                        "photo" to user.data!!["photo"]
+                                    ))
                                 Log.d(this.javaClass.name, "Trail Successfully Saved!")
                             } else {
                                 // user doesn't exist or doesn't have any points
                                 db.collection("user").document(firebaseAuth.uid!!)
-                                    .set(hashMapOf("pontos" to pointsEarned))
+                                    .set(hashMapOf("pontos" to pointsEarned,
+                                    "name" to "DefaultUser",
+                                    "photo" to "https://firebasestorage.googleapis.com/v0/b/commov-ed043.appspot.com/o/Screenshot_1.png?alt=media&token=8c7fc37f-74f9-4d9e-9f57-ae3685be9eac"
+                                    ))
                             }
                         }
                 }

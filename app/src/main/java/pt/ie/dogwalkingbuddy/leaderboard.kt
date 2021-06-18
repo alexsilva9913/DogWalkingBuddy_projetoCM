@@ -49,7 +49,9 @@ class leaderboard : AppCompatActivity() {
                 if (players != null) {
                     showPlayersPosition(players)
                     if (champions != null) {
-                        showChampions(champions)
+                        if (champions.size > 2) {
+                            showChampions(champions)
+                        }
                     }
                 }
             })
