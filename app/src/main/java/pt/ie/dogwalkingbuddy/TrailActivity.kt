@@ -225,14 +225,14 @@ class TrailActivity : AppCompatActivity(),
                     db.collection("user").document(firebaseAuth.uid!!).get()
                         .addOnSuccessListener { user ->
                             if (user.data != null) {
-                                val curPoints = user.data!!["points"] as Long
+                                val curPoints = user.data!!["pontos"] as Long
                                 db.collection("user").document(firebaseAuth.uid!!)
-                                    .set(hashMapOf("points" to curPoints + pointsEarned))
+                                    .set(hashMapOf("pontos" to curPoints + pointsEarned))
                                 Log.d(this.javaClass.name, "Trail Successfully Saved!")
                             } else {
                                 // user doesn't exist or doesn't have any points
                                 db.collection("user").document(firebaseAuth.uid!!)
-                                    .set(hashMapOf("points" to pointsEarned))
+                                    .set(hashMapOf("pontos" to pointsEarned))
                             }
                         }
                 }

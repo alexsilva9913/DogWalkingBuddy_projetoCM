@@ -66,13 +66,13 @@ class MenuPrincipal : AppCompatActivity() {
         }
         val timeline = findViewById<Button>(R.id.buttontimeline)
         timeline.setOnClickListener{
-           // val intent = Intent(this, /*Timeline*/::class.java)
-           // startActivity(intent)
+            val intent = Intent(this, pt.ie.dogwalkingbuddy.timeline::class.java)
+            startActivity(intent)
         }
         val reward = findViewById<Button>(R.id.buttonrewards)
         reward.setOnClickListener{
-           // val intent = Intent(this, /*Reward*/::class.java)
-           // startActivity(intent)
+           val intent = Intent(this, loja::class.java)
+           startActivity(intent)
         }
         val walk = findViewById<FloatingActionButton>(R.id.fabwalk)
         walk.setOnClickListener{
